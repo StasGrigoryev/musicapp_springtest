@@ -9,8 +9,12 @@ public class  MusicPlayer {
     private String name;
     private int volume;
 
-    // IoC
-    public MusicPlayer() {
+    private MusicPlayer() {
+    }
+
+    //factory method
+    public static MusicPlayer getMusicPlayer() {
+        return new MusicPlayer();
     }
 
     public List<Music> getMusic() {

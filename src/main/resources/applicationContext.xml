@@ -21,9 +21,10 @@
 
     <bean id="musicPlayer"
           class="org.example.springcourse.MusicPlayer"
-          scope="pgitrototype"
+          scope="prototype"
           init-method="doMyInit"
-          destroy-method="doMyDestroy">
+          destroy-method="doMyDestroy"
+          factory-method="getMusicPlayer">
         <property name="music">
             <util:list value-type="org.example.springcourse.Music">
                 <ref bean="ClassicalBean"/>
