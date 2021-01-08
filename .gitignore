@@ -1,0 +1,9 @@
+# Default ignored files
+.idea/*
+*.class
+*.war
+*.jar
+*.ear
+*.iml
+src/test/*
+target/*
