@@ -42,6 +42,14 @@ public class  MusicPlayer {
         System.out.println("Now playing " + m.getSong());
     }
 
+    public void doMyInit() {
+        System.out.println("Doing my initialisation");
+    }
+
+    public void doMyDestroy() {
+        System.out.println("Doing my destruction");
+    }
+
     @Override
     public String toString() {
         return "Now playing " + this.getMusic().get(0) + "\n" +
