@@ -1,25 +1,24 @@
 package org.example.springcourse;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class  MusicPlayer {
 
-    private Music music;
+    private List<Music> musicList = new ArrayList<>();
     private String name;
     private int volume;
 
     // IoC
-    public MusicPlayer(Music music) {
-        this.music = music;
-    }
-
     public MusicPlayer() {
     }
 
-    public Music getMusic() {
-        return music;
+    public List<Music> getMusic() {
+        return musicList;
     }
 
-    public void setMusic(Music music) {
-        this.music = music;
+    public void setMusic(List<Music> musicList) {
+        this.musicList = musicList;
     }
 
     public String getName() {
@@ -39,12 +38,13 @@ public class  MusicPlayer {
     }
 
     public void playMusic() {
-        System.out.println("Now playing " + music.getSong());
+        for(Music m : musicList)
+        System.out.println("Now playing " + m.getSong());
     }
 
     @Override
     public String toString() {
-        return "Now playing " + this.getMusic().getSong() + "\n" +
+        return "Now playing " + this.getMusic().get(0) + "\n" +
                 "with the volume " + this.getVolume() + "\n" +
                 "on player \"" + this.getName() + "\"";
     }
