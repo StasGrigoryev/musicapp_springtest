@@ -1,11 +1,14 @@
 package org.example.springcourse;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
+@Component
 public class  MusicPlayer {
-
-    private List<Music> musicList = new ArrayList<>();
+    private Music music1;
+    private Music music2;
+    private Music music3;
     private String name;
     private int volume;
 
@@ -17,12 +20,13 @@ public class  MusicPlayer {
         return new MusicPlayer();
     }
 
-    public List<Music> getMusic() {
-        return musicList;
-    }
-
-    public void setMusic(List<Music> musicList) {
-        this.musicList = musicList;
+    @Autowired
+    public void setMusic(@Qualifier("classicalMusic") Music classic,
+                         @Qualifier("rockMusic") Music rock,
+                         @Qualifier("popMusic") Music pop) {
+        this.music1 = classic;
+        this.music2 = rock;
+        this.music3 = pop;
     }
 
     public String getName() {
@@ -41,9 +45,23 @@ public class  MusicPlayer {
         this.volume = volume;
     }
 
-    public void playMusic() {
-        for(Music m : musicList)
-        System.out.println("Now playing " + m.getSong());
+    public void playMusic(Genre genre) {
+
+        switch(genre) {
+            case CLASSICAL:
+                System.out.println("Now playing " + music1.getSong());
+                break;
+            case ROCK:
+                System.out.println("Now playing " + music2.getSong());
+                break;
+            case POP:
+                System.out.println("Now playing " + music3.getSong());
+                break;
+            default:
+                System.out.println("No such genre found");
+        }
+
+
     }
 
     public void doMyInit() {
@@ -54,10 +72,4 @@ public class  MusicPlayer {
         System.out.println("Doing my destruction");
     }
 
-    @Override
-    public String toString() {
-        return "Now playing " + this.getMusic().get(0) + "\n" +
-                "with the volume " + this.getVolume() + "\n" +
-                "on player \"" + this.getName() + "\"";
-    }
 }

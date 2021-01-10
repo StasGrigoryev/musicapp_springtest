@@ -11,30 +11,24 @@
     http://www.springframework.org/schema/util/spring-util-2.5.xsd">
 
     <context:property-placeholder location="classpath:musicPlayer.properties"/>
+    <context:component-scan base-package="org/example/springcourse"/>
 
-    <bean id="ClassicalBean" class="org.example.springcourse.ClassicalMusic">
-    </bean>
-    <bean id="RockBean" class="org.example.springcourse.RockMusic">
-    </bean>
-    <bean id="PopBean" class="org.example.springcourse.PopMusic">
-    </bean>
-
-    <bean id="musicPlayer"
-          class="org.example.springcourse.MusicPlayer"
-          scope="prototype"
-          init-method="doMyInit"
-          destroy-method="doMyDestroy"
-          factory-method="getMusicPlayer">
-        <property name="music">
-            <util:list value-type="org.example.springcourse.Music">
-                <ref bean="ClassicalBean"/>
-                <ref bean="RockBean"/>
-                <ref bean="PopBean"/>
-            </util:list>
-        </property>
-        <property name="name" value="${musicPlayer.name}"/>
-        <property name="volume" value="${musicPlayer.volume}"/>
-    </bean>
+<!--    <bean id="musicPlayer"-->
+<!--          class="org.example.springcourse.MusicPlayer"-->
+<!--          scope="prototype"-->
+<!--          init-method="doMyInit"-->
+<!--          destroy-method="doMyDestroy"-->
+<!--          factory-method="getMusicPlayer">-->
+<!--        <property name="music">-->
+<!--            <util:list value-type="org.example.springcourse.Music">-->
+<!--                <ref bean="ClassicalBean"/>-->
+<!--                <ref bean="RockBean"/>-->
+<!--                <ref bean="PopBean"/>-->
+<!--            </util:list>-->
+<!--        </property>-->
+<!--        <property name="name" value="${musicPlayer.name}"/>-->
+<!--        <property name="volume" value="${musicPlayer.volume}"/>-->
+<!--    </bean>-->
 
 <!--    <bean id="musicPlayer"-->
 <!--    class="org.example.springcourse.MusicPlayer">-->

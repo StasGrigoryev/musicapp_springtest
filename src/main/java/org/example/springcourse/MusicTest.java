@@ -8,8 +8,8 @@ public class MusicTest {
                 "applicationContext.xml");
 //        Music music = context.getBean("musicBean", Music.class);
 //        MusicPlayer musicPlayer = new MusicPlayer(music);
-        MusicPlayer musicPlayer1 = context.getBean("musicPlayer", MusicPlayer.class);
-        musicPlayer1.playMusic();
+        Computer computer = context.getBean("computer", Computer.class);
+        computer.boot();
 
         context.close();
     }
