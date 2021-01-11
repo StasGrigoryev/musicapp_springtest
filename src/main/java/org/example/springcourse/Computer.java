@@ -26,7 +26,6 @@ public class Computer {
 
     public void boot() {
         String input = "";
-        while(true) {
             try {
                 System.out.println("Enter a genre");
                 input = MusicHelper.getUserInput();
@@ -35,8 +34,6 @@ public class Computer {
                 System.out.println("No such genre");
                 boot();
             }
-            break;
-        }
         MusicHelper.closeReader();
     }
 }
