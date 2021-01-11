@@ -25,11 +25,13 @@ public class Computer {
     }
 
     public void boot() {
-        String input = MusicHelper.getStringFromUser();
+        String input = "";
         while(!MusicHelper.inputIsValid) {
             try {
                 System.out.println("Enter a genre");
+                input = MusicHelper.getStringFromUser();
                 mp.playMusic(Genre.valueOf(input.toUpperCase(Locale.ENGLISH)));
+                MusicHelper.inputIsValid = true;
             } catch (IllegalArgumentException e) {
                 System.out.println("No such genre");
                 boot();
