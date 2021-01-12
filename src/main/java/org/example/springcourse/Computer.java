@@ -5,12 +5,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.Locale;
 
-@Component
 public class Computer {
     private int id;
     private MusicPlayer mp;
 
-    @Autowired
     public Computer(MusicPlayer mp) {
         id = 1;
         this.mp = mp;

@@ -1,5 +1,6 @@
-package org.example.springcourse;
+package org.example.springcourse.genre;
 
+import org.example.springcourse.Music;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -7,10 +8,8 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
-public class PopMusic implements Music{
+public class ClassicalMusic implements Music {
     private List<String> playlist = new ArrayList<>();
-
 
     public void setPlaylist(List<String> playlist) {
         this.playlist = playlist;
@@ -19,11 +18,10 @@ public class PopMusic implements Music{
 
     @PostConstruct
     private void setMusic(){
-        this.playlist.add("\"Seniorita\" by Shawn Mendez");
-        this.playlist.add("\"Shape Of You\" by Ed Sheeran");
-        this.playlist.add("\"Sorry\" by Justin Bieber");
+        this.playlist.add("\"Symphony #5\" by Beethoven");
+        this.playlist.add("\"Suite No. 1 in G major\" by J.S. Bach");
+        this.playlist.add("\"Nocturne in B-flat minor\" by Fredric Chopin");
     }
-
     @Override
     public String getSong() {
         return playlist.get((int) Math.round((Math.random()*2)));

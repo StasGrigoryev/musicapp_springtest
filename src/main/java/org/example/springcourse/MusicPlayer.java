@@ -2,31 +2,30 @@ package org.example.springcourse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-@Component
+import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.List;
+
 public class  MusicPlayer {
-    private Music music1;
-    private Music music2;
-    private Music music3;
+    private List<Music> musicList;
+    @Value("${musicPlayer.name}")
     private String name;
+    @Value("${musicPlayer.volume}")
     private int volume;
 
-    private MusicPlayer() {
+    public MusicPlayer() {
+    }
+
+    public MusicPlayer(List<Music> musicList) {
+        this.musicList = musicList;
     }
 
     //factory method
     public static MusicPlayer getMusicPlayer() {
         return new MusicPlayer();
-    }
-
-    @Autowired
-    public void setMusic(@Qualifier("classicalMusic") Music classic,
-                         @Qualifier("rockMusic") Music rock,
-                         @Qualifier("popMusic") Music pop) {
-        this.music1 = classic;
-        this.music2 = rock;
-        this.music3 = pop;
     }
 
     public String getName() {
@@ -47,20 +46,25 @@ public class  MusicPlayer {
 
     public void playMusic(Genre genre) {
 
-        switch(genre) {
-            case CLASSICAL:
-                System.out.println("Now playing " + music1.getSong());
-                break;
-            case ROCK:
-                System.out.println("Now playing " + music2.getSong());
-                break;
-            case POP:
-                System.out.println("Now playing " + music3.getSong());
-                break;
-            default:
-                System.out.println("No such genre found");
+        try {
+            switch (genre) {
+                case CLASSICAL:
+                    System.out.println("Now playing " + musicList.get(0).getSong());
+                    break;
+                case ROCK:
+                    System.out.println("Now playing " + musicList.get(1).getSong());
+                    break;
+                case POP:
+                    System.out.println("Now playing " + musicList.get(2).getSong());
+                    break;
+                default:
+                    System.out.println("No such org.example.springcourse.genre found");
+            }
         }
-
+        catch(NullPointerException e) {
+            System.out.println("The playlist is empty");
+        }
+        System.out.println("Name: " + getName() + "\n" +"Volume: " + getVolume());
 
     }
 
